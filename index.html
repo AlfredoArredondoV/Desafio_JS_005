@@ -8,21 +8,30 @@
     <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
-    <nav>
-        <h1>Todo List</h1>
-        <input id="nuevoInvitado">
-        <button class="btn btn-primary" id="agregarInvitado">Agregar</button>
-    </nav>
     <main>
-        <div>
-            <p>Total: <span id="task">0</span></p>
-            <p>Tareas Realizadas: <span id="taskCompleted">0</span></p>
+        <h1>Conversor de monedas Nacional</h1>
+        <div class="container">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Pesos CLP</h5>
+                    <input type="number" id="cashMoney">
+                    <h5>Moneda a convertir</h5>
+                    <select id="money">
+                        <option value="uf">UF</option>
+                        <option value="dolar">Dolar Observado</option>
+                        <option value="euro">Euro</option>
+                    </select>
+                    <p></p>
+                    <button id="btnMoney" class="btn btn-primary">Buscar</button>
+                    <h5 id="totalBar">...</h5>
+                </div>
+            </div>
         </div>
         <div>
-            <h3>Invitados: </h3>
-            <ul id="invitados"></ul>
+            <div id="chart"></div>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

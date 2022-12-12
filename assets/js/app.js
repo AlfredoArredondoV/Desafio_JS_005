@@ -1,69 +1,54 @@
-const listaDeInvitados = document.querySelector("#invitados");
-const invitadoInput = document.querySelector("#nuevoInvitado");
-const btnAgregar = document.querySelector("#agregarInvitado");
-const task = document.querySelector("#task");
-const taskCompleted = document.querySelector("#taskCompleted");
-const invitados = [
-    { id: Date.now() + 1, nombre: "tarea uno" , status: "checked" },
-    { id: Date.now() + 2, nombre: "tarea dos" , status: 0 },
-    { id: Date.now() + 3, nombre: "tarea tres" , status: 0 },
-    { id: Date.now() + 4, nombre: "tareas cuatro" , status: 0 }
-];
-let totalTask=0;
-let totalTaskCompleted=0;
-const render = (invitados) => {
-    listaDeInvitados.innerHTML = "";
-    invitados.forEach((item) => {
-        listaDeInvitados.innerHTML += `
-        <li>
-        ${item.id} - ${item.nombre} 
-        <input class="checkbox" id="${item.id}" type="checkbox" ${item.status}>
-        <button onclick="borrar(${item.id})"><img src="assets/img/close.png" height ="8" width="8" alt=""></button>
-        </li>
-        `;
-        totalTask++;
-        if (item.status==="checked") {
-            totalTaskCompleted++;
-        }
-    })
-    task.textContent=totalTask;
-    taskCompleted.textContent=totalTaskCompleted;
-    
 
+const money = document.querySelector("#money");
+const btnMoney = document.querySelector("#btnMoney");
+const cashMoney = document.querySelector("#cashMoney");
+const totalBar = document.querySelector("#totalBar");
 
+const getMoney = async (money) => {
+    try {
+        const url = `https://mindicador.cl/api/${money}`;
+        const response = await fetch(url);
+        const arrayMoney = await response.json();
+        const total = arrayMoney.serie[0].valor * cashMoney.value;
+        totalBar.textContent = "El Total es: " + total;
+    } catch {
+        console.log(error);
+    } 
 }
-render(invitados);
 
-btnAgregar.addEventListener("click", () => {
-    /* Agregamos el invitado al arreglo */
-    totalTask=0;
-    totalTaskCompleted=0;
-    nuevoInvitado = {id: Date.now(), nombre: invitadoInput.value, status: 0}
-    invitados.push(nuevoInvitado)
-    invitadoInput.value = ""
-    /* Actualizamos la información en el HTML */
-    let html = ""
-    render(invitados);
+btnMoney.addEventListener('click', () => {
+    getMoney(money.value);
+})
 
-});
-
-// Select all checkboxes with the name 'settings' using querySelectorAll.
-var checkboxes = document.querySelectorAll("input[type=checkbox]");
-let enabledSettings = []
-
-/*
-For IE11 support, replace arrow functions with normal functions and
-use a polyfill for Array.forEach:
-https://vanillajstoolkit.com/polyfills/arrayforeach/
-*/
-
-// Use Array.forEach to add an event listener to each checkbox.
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        enabledSettings = 
-        Array.from(checkboxes) // Convert checkboxes to an array to use filter and map.
-        .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
-        .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
-        console.log(enabledSettings);
-    })
-});
+// var chart = new CanvasJS.Chart("chartContainer", {
+//     animationEnabled: true,
+//     theme: "light2", // "light1", "light2", "dark1", "dark2"
+//     title: {
+//         text: "Usuarios Registrados en los meses Junio y Julio",
+//     },
+//     axisY: {
+//         title: "Cantidad de Usuarios",
+//     },
+//     data: [
+//         {
+//         type: "column",
+//         showInLegend: true,
+//         legendMarkerColor: "grey",
+//         dataPoints: [
+//             { y: totalMayo, label: "Mayo" },
+//             { y: totalJunio, label: "Junio" },
+//             { y: totalJulio, label: "Julio" },
+//         ],
+//         },
+//     ],
+//     options: {
+//         backgroundColor: ["rgba(21,129, 239, 1)"],
+//         labels: {
+//         font: {
+//             family: "'Quicksand', sans-serif'",
+//             size: 14,
+//         },
+//         },
+//     },
+// });
+// chart.render();
