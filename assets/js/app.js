@@ -28,8 +28,6 @@ const render = (invitados) => {
     })
     task.textContent=totalTask;
     taskCompleted.textContent=totalTaskCompleted;
-    
-
 
 }
 render(invitados);
@@ -44,7 +42,6 @@ btnAgregar.addEventListener("click", () => {
     /* Actualizamos la información en el HTML */
     let html = ""
     render(invitados);
-
 });
 
 // Select all checkboxes with the name 'settings' using querySelectorAll.
