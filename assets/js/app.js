@@ -30,7 +30,6 @@ const render = (invitados) => {
     taskCompleted.textContent=totalTaskCompleted;
 
 }
-render(invitados);
 
 btnAgregar.addEventListener("click", () => {
     /* Agregamos el invitado al arreglo */
